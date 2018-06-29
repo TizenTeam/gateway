@@ -123,6 +123,15 @@ let text = client.get("<span class="origin">https://gateway.local</span>/things"
         </div>
       </div>
     </section>
+    <script>
+/* postToken to client apps if any */
+if (window.location.protocol === "file:") {
+  window.addEventListener("message", function(ev) {
+    if (ev.data.message === "token") {
+      ev.source.postMessage({ message: { token: "{{token}}" }}, "*");
+    }
+});
+    </script>
   </body>
 </html>
 
