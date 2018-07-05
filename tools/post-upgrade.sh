@@ -2,6 +2,12 @@
 
 # Performs any necessary steps after the main upgrade process is complete.
 
+# For some reason NVM_DIR isn't set at this point
+export NVM_DIR=${HOME}/.nvm
+\. "$NVM_DIR/nvm.sh"  # This loads nvm
+NODE_VERSION="v10.6.0"
+nvm install node && nvm alias default node
+
 # Install thing-url-adapter
 addons_dir=${HOME}/.mozilla-iot/addons
 if [ ! -d "${addons_dir}/thing-url-adapter" ]; then
