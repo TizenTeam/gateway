@@ -5,11 +5,9 @@
 # For some reason NVM_DIR isn't set at this point
 export NVM_DIR=${HOME}/.nvm
 \. "$NVM_DIR/nvm.sh"  # This loads nvm
-NODE_VERSION="--lts=carbon"
-nvm install ${NODE_VERSION}
-nvm use ${NODE_VERSION}
-# always use most recent version (lts)
-nvm alias default node
+NODE_VERSION="v10.6.0"
+nvm install node && nvm alias default node
+
 
 # Allow node and python3 to use the Bluetooth adapter
 sudo setcap cap_net_raw+eip $(eval readlink -f `which node`)
