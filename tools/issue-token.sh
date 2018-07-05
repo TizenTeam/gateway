@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 # Issues JWT token signature with JSONWebToken APIs.
 

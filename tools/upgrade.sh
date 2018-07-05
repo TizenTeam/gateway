@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 # Performs an upgrade given the urls to the content-addressed archives. Expects
 # to be run in the ~/mozilla-iot directory
