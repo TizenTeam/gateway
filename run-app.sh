@@ -1,6 +1,7 @@
 #!/bin/bash
 set -e
 set -x
+
 MOZIOT_HOME="${MOZIOT_HOME:=${HOME}/.mozilla-iot}"
 
 is_docker_container() {

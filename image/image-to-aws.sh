@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 #
 # This script copies an image from an sdcard, zips it up, creates the
 # sha256sum file and copies the 2 files to AWS.

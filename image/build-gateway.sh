@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 #
 # This script is expected to run inside a docker container which has the Raspberry Pi toolchain
 # and required prerequisites:
