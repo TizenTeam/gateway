@@ -1,5 +1,6 @@
 #!/bin/bash
-
+set -e
+set -x
 MOZIOT_HOME="${MOZIOT_HOME:=${HOME}/.mozilla-iot}"
 
 is_docker_container() {
@@ -22,7 +23,7 @@ fi
 
 run_app() {
   export NVM_DIR="$HOME/.nvm"
-  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+  [ ! -s "$NVM_DIR/nvm.sh" ] || \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
   sudo /sbin/ldconfig
 
@@ -37,4 +38,4 @@ run_app() {
 }
 
 mkdir -p "${MOZIOT_HOME}/log"
-run_app > "${MOZIOT_HOME}/log/run-app.log" 2>&1
+run_app | tee "${MOZIOT_HOME}/log/run-app.log" 2>&1
