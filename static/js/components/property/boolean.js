@@ -11,8 +11,10 @@
 
 const BaseComponent = require('../base-component');
 
-const template = document.createElement('template');
-template.innerHTML = `
+class BooleanProperty extends BaseComponent {
+  constructor() {
+    const template = document.createElement('template');
+    template.innerHTML = `
   <style>
     :host {
       display: inline-block;
@@ -70,26 +72,24 @@ template.innerHTML = `
       display: inline-block;
     }
   </style>
-  <div id="container" class="webthing-boolean-property-container">
-    <div id="contents" class="webthing-boolean-property-contents">
-      <form id="form" class="webthing-boolean-property-form">
-        <input type="checkbox" id="checkbox"
+  <div id="container-${BaseComponent.count}" class="webthing-boolean-property-container">
+    <div id="contents-${BaseComponent.count}" class="webthing-boolean-property-contents">
+      <form id="form-${BaseComponent.count}" class="webthing-boolean-property-form">
+        <input type="checkbox" id="checkbox-${BaseComponent.count}"
           class="webthing-boolean-property-checkbox">
-        <label id="label" for="checkbox"
+        <label id="label" for="checkbox-${BaseComponent.count}"
           class="webthing-boolean-property-label">
         </label>
       </form>
     </div>
   </div>
-  <div id="name" class="webthing-boolean-property-name"></div>
+  <div id="name-${BaseComponent.count}" class="webthing-boolean-property-name"></div>
 `;
 
-class BooleanProperty extends BaseComponent {
-  constructor() {
     super(template);
 
-    this._input = this.shadowRoot.querySelector('#checkbox');
-    this._name = this.shadowRoot.querySelector('#name');
+    this._input = this.shadowRoot.querySelector(`#checkbox${this.idSuffix}`);
+    this._name = this.shadowRoot.querySelector(`#name${this.idSuffix}`);
 
     this._onClick = this.__onClick.bind(this);
     this._onKeyUp = this.__onKeyUp.bind(this);
