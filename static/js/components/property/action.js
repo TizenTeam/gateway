@@ -12,7 +12,16 @@
 const BaseComponent = require('../base-component');
 
 class Action extends BaseComponent {
+  static init() {
+    if (!Action.count) {
+      Action.count = 1;
+    } else {
+      Action.count++;
+    }
+  }
+
   constructor() {
+    Action.init();
     const template = document.createElement('template');
     template.innerHTML = `
   <style>
@@ -79,18 +88,18 @@ class Action extends BaseComponent {
       display: inline-block;
     }
   </style>
-  <div id="container-${BaseComponent.count}" class="webthing-action-container">
-    <div id="contents-${BaseComponent.count}" class="webthing-action-contents">
-      <button id="button-${BaseComponent.count}" type="button" class="webthing-action-button"></button>
+  <div id="container-${Action.count}" class="webthing-action-container">
+    <div id="contents-${Action.count}" class="webthing-action-contents">
+      <button id="button-${Action.count}" type="button" class="webthing-action-button"></button>
     </div>
   </div>
-  <div id="name-${BaseComponent.count}" class="webthing-action-name"></div>
+  <div id="name-${Action.count}" class="webthing-action-name"></div>
 `;
 
     super(template);
 
-    this._button = this.shadowRoot.querySelector(`#button${this.idSuffix}`);
-    this._name = this.shadowRoot.querySelector(`#name${this.idSuffix}`);
+    this._button = this.shadowRoot.querySelector(`#button-${Action.count}`);
+    this._name = this.shadowRoot.querySelector(`#name-${Action.count}`);
     this._href = null;
 
     this._onClick = this.__onClick.bind(this);

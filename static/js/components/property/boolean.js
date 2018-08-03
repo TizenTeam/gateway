@@ -12,7 +12,16 @@
 const BaseComponent = require('../base-component');
 
 class BooleanProperty extends BaseComponent {
+  static init() {
+    if (!BooleanProperty.count) {
+      BooleanProperty.count = 1;
+    } else {
+      BooleanProperty.count++;
+    }
+  }
+
   constructor() {
+    BooleanProperty.init();
     const template = document.createElement('template');
     template.innerHTML = `
   <style>
@@ -72,24 +81,23 @@ class BooleanProperty extends BaseComponent {
       display: inline-block;
     }
   </style>
-  <div id="container-${BaseComponent.count}" class="webthing-boolean-property-container">
-    <div id="contents-${BaseComponent.count}" class="webthing-boolean-property-contents">
-      <form id="form-${BaseComponent.count}" class="webthing-boolean-property-form">
-        <input type="checkbox" id="checkbox-${BaseComponent.count}"
+  <div id="container-${BooleanProperty.count}" class="webthing-boolean-property-container">
+    <div id="contents-${BooleanProperty.count}" class="webthing-boolean-property-contents">
+      <form id="form-${BooleanProperty.count}" class="webthing-boolean-property-form">
+        <input type="checkbox" id="checkbox-${BooleanProperty.count}"
           class="webthing-boolean-property-checkbox">
-        <label id="label" for="checkbox-${BaseComponent.count}"
+        <label id="label" for="checkbox-${BooleanProperty.count}"
           class="webthing-boolean-property-label">
         </label>
       </form>
     </div>
   </div>
-  <div id="name-${BaseComponent.count}" class="webthing-boolean-property-name"></div>
-`;
-
+  <div id="name-${BooleanProperty.count}" class="webthing-boolean-property-name"></div>
+`;BooleanProperty;
     super(template);
 
-    this._input = this.shadowRoot.querySelector(`#checkbox${this.idSuffix}`);
-    this._name = this.shadowRoot.querySelector(`#name${this.idSuffix}`);
+    this._input = this.shadowRoot.querySelector(`#checkbox-${BooleanProperty.count}`);
+    this._name = this.shadowRoot.querySelector(`#name-${BooleanProperty.count}`);
 
     this._onClick = this.__onClick.bind(this);
     this._onKeyUp = this.__onKeyUp.bind(this);

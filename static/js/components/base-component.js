@@ -12,7 +12,6 @@
 class BaseComponent extends HTMLElement {
   constructor(template) {
     super();
-    this.idSuffix = `-${BaseComponent.count++}`;
     this.attachShadow({mode: 'open'});
     const templateClone = template.content.cloneNode(true);
     // Detect whether ShadowRoot has been polyfilled on this browser
@@ -45,5 +44,4 @@ class BaseComponent extends HTMLElement {
   }
 }
 
-BaseComponent.count = 0;
 module.exports = BaseComponent;

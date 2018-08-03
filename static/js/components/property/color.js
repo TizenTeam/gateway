@@ -12,7 +12,16 @@
 const BaseComponent = require('../base-component');
 
 class ColorProperty extends BaseComponent {
+  static init() {
+    if (!ColorProperty.count) {
+      ColorProperty.count = 1;
+    } else {
+      ColorProperty.count++;
+    }
+  }
+
   constructor() {
+    ColorProperty.init();
     const template = document.createElement('template');
     template.innerHTML = `
   <style>
@@ -48,18 +57,18 @@ class ColorProperty extends BaseComponent {
       display: inline-block;
     }
   </style>
-  <div id="container-${BaseComponent.count}" class="webthing-color-property-container">
-    <div id="contents-${BaseComponent.count}" class="webthing-color-property-contents">
-      <input type="color" id="color-${BaseComponent.count}" class="webthing-color-property-color">
+  <div id="container-${ColorProperty.count}" class="webthing-color-property-container">
+    <div id="contents-${ColorProperty.count}" class="webthing-color-property-contents">
+      <input type="color" id="color-${ColorProperty.count}" class="webthing-color-property-color">
     </div>
   </div>
-  <div id="name-${BaseComponent.count}" class="webthing-color-property-name"></div>
+  <div id="name-${ColorProperty.count}" class="webthing-color-property-name"></div>
 `;
 
     super(template);
 
-    this._input = this.shadowRoot.querySelector(`#color${this.idSuffix}`);
-    this._name = this.shadowRoot.querySelector(`#name${this.idSuffix}`);
+    this._input = this.shadowRoot.querySelector(`#color-${ColorProperty.count}`);
+    this._name = this.shadowRoot.querySelector(`#name-${ColorProperty.count}`);
 
     this._onChange = this.__onChange.bind(this);
   }

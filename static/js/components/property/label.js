@@ -12,7 +12,16 @@
 const BaseComponent = require('../base-component');
 
 class LabelProperty extends BaseComponent {
+  static init() {
+    if (!LabelProperty.count) {
+      LabelProperty.count = 1;
+    } else {
+      LabelProperty.count++;
+    }
+  }
+
   constructor() {
+    LabelProperty.init();
     const template = document.createElement('template');
     template.innerHTML = `
   <style>
@@ -53,20 +62,20 @@ class LabelProperty extends BaseComponent {
       display: inline-block;
     }
   </style>
-  <div id="container-${BaseComponent.count}" class="webthing-label-property-container">
-    <div id="contents-${BaseComponent.count}" class="webthing-label-property-contents">
-      <span id="value-${BaseComponent.count}" class="webthing-label-property-value">
-      </span><span id="unit-${BaseComponent.count}" class="webthing-label-property-unit"></span>
+  <div id="container-${LabelProperty.count}" class="webthing-label-property-container">
+    <div id="contents-${LabelProperty.count}" class="webthing-label-property-contents">
+      <span id="value-${LabelProperty.count}" class="webthing-label-property-value">
+      </span><span id="unit-${LabelProperty.count}" class="webthing-label-property-unit"></span>
     </div>
   </div>
-  <div id="name-${BaseComponent.count}" class="webthing-label-property-name"></div>
+  <div id="name-${LabelProperty.count}" class="webthing-label-property-name"></div>
 `;
 
     super(template);
 
-    this._name = this.shadowRoot.querySelector(`#name${this.idSuffix}`);
-    this._value = this.shadowRoot.querySelector(`#value${this.idSuffix}`);
-    this._unit = this.shadowRoot.querySelector(`#unit${this.idSuffix}`);
+    this._name = this.shadowRoot.querySelector(`#name-${LabelProperty.count}`);
+    this._value = this.shadowRoot.querySelector(`#value-${LabelProperty.count}`);
+    this._unit = this.shadowRoot.querySelector(`#unit-${LabelProperty.count}`);
     this._precision = 0;
   }
 

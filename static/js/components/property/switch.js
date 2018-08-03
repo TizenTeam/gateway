@@ -12,7 +12,16 @@
 const BaseComponent = require('../base-component');
 
 class SwitchProperty extends BaseComponent {
+  static init() {
+    if (!SwitchProperty.count) {
+      SwitchProperty.count = 1;
+    } else {
+      SwitchProperty.count++;
+    }
+  }
+
   constructor() {
+    SwitchProperty.init();
     const template = document.createElement('template');
     template.innerHTML = `
   <style>
@@ -64,7 +73,7 @@ class SwitchProperty extends BaseComponent {
       transition: 0.1s;
     }
 
-    .webthing-switch-property-switch:checked + #slider-${BaseComponent.count}::after {
+    .webthing-switch-property-switch:checked + #slider-${SwitchProperty.count}::after {
       transform: translate(3.65rem, 0.35rem);
     }
 
@@ -82,25 +91,25 @@ class SwitchProperty extends BaseComponent {
       display: inline-block;
     }
   </style>
-  <div id="container-${BaseComponent.count}" class="webthing-switch-property-container">
-    <div id="contents-${BaseComponent.count}" class="webthing-switch-property-contents">
+  <div id="container-${SwitchProperty.count}" class="webthing-switch-property-container">
+    <div id="contents-${SwitchProperty.count}" class="webthing-switch-property-contents">
       <form>
-        <input type="checkbox" id="switch-${BaseComponent.count}"
+        <input type="checkbox" id="switch-${SwitchProperty.count}"
           class="webthing-switch-property-switch">
-        <label id="slider-${BaseComponent.count}" for="switch-${BaseComponent.count}" class="webthing-switch-property-slider">
+        <label id="slider-${SwitchProperty.count}" for="switch-${SwitchProperty.count}" class="webthing-switch-property-slider">
         </label>
       </form>
-      <div id="label-${BaseComponent.count}" class="webthing-switch-property-label"></div>
+      <div id="label-${SwitchProperty.count}" class="webthing-switch-property-label"></div>
     </div>
   </div>
-  <div id="name-${BaseComponent.count}" class="webthing-switch-property-name"></div>
+  <div id="name-${SwitchProperty.count}" class="webthing-switch-property-name"></div>
 `;
 
     super(template);
 
-    this._input = this.shadowRoot.querySelector(`#switch${this.idSuffix}`);
-    this._name = this.shadowRoot.querySelector(`#name${this.idSuffix}`);
-    this._label = this.shadowRoot.querySelector(`#label${this.idSuffix}`);
+    this._input = this.shadowRoot.querySelector(`#switch-${SwitchProperty.count}`);
+    this._name = this.shadowRoot.querySelector(`#name-${SwitchProperty.count}`);
+    this._label = this.shadowRoot.querySelector(`#label-${SwitchProperty.count}`);
 
     this._onClick = this.__onClick.bind(this);
     this._onKeyUp = this.__onKeyUp.bind(this);
