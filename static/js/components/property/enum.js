@@ -12,7 +12,16 @@
 const BaseComponent = require('../base-component');
 
 class EnumProperty extends BaseComponent {
+  static init() {
+    if (!EnumProperty.count) {
+      EnumProperty.count = 1;
+    } else {
+      EnumProperty.count++;
+    }
+  }
+
   constructor() {
+    EnumProperty.init();
     const template = document.createElement('template');
     template.innerHTML = `
   <style>
@@ -66,20 +75,20 @@ class EnumProperty extends BaseComponent {
       display: inline-block;
     }
   </style>
-  <div id="container-${BaseComponent.count}" class="webthing-enum-property-container">
-    <div id="contents-${BaseComponent.count}" class="webthing-enum-property-contents">
-      <select id="select-${BaseComponent.count}" class="webthing-enum-property-select"></select>
-      <div id="unit-${BaseComponent.count}" class="webthing-enum-property-unit"></div>
+  <div id="container-${EnumProperty.count}" class="webthing-enum-property-container">
+    <div id="contents-${EnumProperty.count}" class="webthing-enum-property-contents">
+      <select id="select-${EnumProperty.count}" class="webthing-enum-property-select"></select>
+      <div id="unit-${EnumProperty.count}" class="webthing-enum-property-unit"></div>
     </div>
   </div>
-  <div id="name-${BaseComponent.count}" class="webthing-enum-property-name"></div>
+  <div id="name-${EnumProperty.count}" class="webthing-enum-property-name"></div>
 `;
 
     super(template);
 
-    this._select = this.shadowRoot.querySelector(`#select${this.idSuffix}`);
-    this._unit = this.shadowRoot.querySelector(`#unit${this.idSuffix}`);
-    this._name = this.shadowRoot.querySelector(`#name${this.idSuffix}`);
+    this._select = this.shadowRoot.querySelector(`#select-${EnumProperty.count}`);
+    this._unit = this.shadowRoot.querySelector(`#unit-${EnumProperty.count}`);
+    this._name = this.shadowRoot.querySelector(`#name-${EnumProperty.count}`);
 
     this._type = 'string';
 

@@ -12,7 +12,16 @@
 const BaseComponent = require('../base-component');
 
 class StringProperty extends BaseComponent {
+  static init() {
+    if (!StringProperty.count) {
+      StringProperty.count = 1;
+    } else {
+      StringProperty.count++;
+    }
+  }
+
   constructor() {
+    StringProperty.init();
     const template = document.createElement('template');
     template.innerHTML = `
   <style>
@@ -61,21 +70,21 @@ class StringProperty extends BaseComponent {
       display: inline-block;
     }
   </style>
-  <div id="container-${BaseComponent.count}" class="webthing-string-property-container">
-    <div id="contents-${BaseComponent.count}" class="webthing-string-property-contents">
-      <form id="form-${BaseComponent.count}" class="webthing-string-property-form">
-        <input type="text" id="input-${BaseComponent.count}" class="webthing-string-property-input">
+  <div id="container-${StringProperty.count}" class="webthing-string-property-container">
+    <div id="contents-${StringProperty.count}" class="webthing-string-property-contents">
+      <form id="form-${StringProperty.count}" class="webthing-string-property-form">
+        <input type="text" id="input-${StringProperty.count}" class="webthing-string-property-input">
       </form>
     </div>
   </div>
-  <div id="name-${BaseComponent.count}" class="webthing-string-property-name"></div>
+  <div id="name-${StringProperty.count}" class="webthing-string-property-name"></div>
 `;
 
     super(template);
 
-    this._form = this.shadowRoot.querySelector(`#form${this.idSuffix}`);
-    this._input = this.shadowRoot.querySelector(`#input${this.idSuffix}`);
-    this._name = this.shadowRoot.querySelector(`#name${this.idSuffix}`);
+    this._form = this.shadowRoot.querySelector(`#form-${StringProperty.count}`);
+    this._input = this.shadowRoot.querySelector(`#input-${StringProperty.count}`);
+    this._name = this.shadowRoot.querySelector(`#name-${StringProperty.count}`);
 
     this._onSubmit = this.__onSubmit.bind(this);
     this._onBlur = this.__onBlur.bind(this);

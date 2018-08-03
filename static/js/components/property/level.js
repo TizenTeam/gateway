@@ -12,7 +12,16 @@
 const BaseComponent = require('../base-component');
 
 class LevelProperty extends BaseComponent {
+  static init() {
+    if (!LevelProperty.count) {
+      LevelProperty.count = 1;
+    } else {
+      LevelProperty.count++;
+    }
+  }
+
   constructor() {
+    LevelProperty.init();
     const template = document.createElement('template');
     template.innerHTML = `
   <style>
@@ -95,32 +104,32 @@ class LevelProperty extends BaseComponent {
       display: inline-block;
     }
   </style>
-  <div id="container-${BaseComponent.count}" class="webthing-level-property-container">
-    <div id="contents-${BaseComponent.count}" class="webthing-level-property-contents">
-      <div id="text-${BaseComponent.count}" class="webthing-level-property-text hidden"></div>
-      <div id="bar-container-${BaseComponent.count}"
+  <div id="container-${LevelProperty.count}" class="webthing-level-property-container">
+    <div id="contents-${LevelProperty.count}" class="webthing-level-property-contents">
+      <div id="text-${LevelProperty.count}" class="webthing-level-property-text hidden"></div>
+      <div id="bar-container-${LevelProperty.count}"
         class="webthing-level-property-bar-container hidden">
-        <span id="bar-${BaseComponent.count}" class="webthing-level-property-bar"></span>
+        <span id="bar-${LevelProperty.count}" class="webthing-level-property-bar"></span>
       </div>
-      <form id="form-${BaseComponent.count}" class="webthing-level-property-form-${BaseComponent.count}">
-        <input type="number" id="number-${BaseComponent.count}" class="webthing-level-property-number">
-        <input type="range" id="slider" class="webthing-level-property-slider">
+      <form id="form-${LevelProperty.count}" class="webthing-level-property-form-${LevelProperty.count}">
+        <input type="number" id="number-${LevelProperty.count}" class="webthing-level-property-number">
+        <input type="range" id="slider-level-${LevelProperty.count}"" class="webthing-level-property-slider">
       </form>
-      <div id="unit-${BaseComponent.count}" class="webthing-level-property-unit"></div>
+      <div id="unit-${LevelProperty.count}" class="webthing-level-property-unit"></div>
     </div>
   </div>
-  <div id="name-${BaseComponent.count}" class="webthing-level-property-name"></div>
+  <div id="name-${LevelProperty.count}" class="webthing-level-property-name"></div>
 `;
     super(template);
 
-    this._text = this.shadowRoot.querySelector(`#text${this.idSuffix}`);
-    this._barContainer = this.shadowRoot.querySelector(`#bar-container${this.idSuffix}`);
-    this._bar = this.shadowRoot.querySelector(`#bar${this.idSuffix}`);
-    this._form = this.shadowRoot.querySelector(`#form${this.idSuffix}`);
-    this._number = this.shadowRoot.querySelector(`#number${this.idSuffix}`);
-    this._slider = this.shadowRoot.querySelector(`#slider`);
-    this._unit = this.shadowRoot.querySelector(`#unit${this.idSuffix}`);
-    this._name = this.shadowRoot.querySelector(`#name${this.idSuffix}`);
+    this._text = this.shadowRoot.querySelector(`#text-${LevelProperty.count}`);
+    this._barContainer = this.shadowRoot.querySelector(`#bar-container-${LevelProperty.count}`);
+    this._bar = this.shadowRoot.querySelector(`#bar-${LevelProperty.count}`);
+    this._form = this.shadowRoot.querySelector(`#form-${LevelProperty.count}`);
+    this._number = this.shadowRoot.querySelector(`#number-${LevelProperty.count}`);
+    this._slider = this.shadowRoot.querySelector(`#slider-level-${LevelProperty.count}`);
+    this._unit = this.shadowRoot.querySelector(`#unit-${LevelProperty.count}`);
+    this._name = this.shadowRoot.querySelector(`#name-${LevelProperty.count}`);
 
     this._onChange = this.__onChange.bind(this);
     this._onClick = this.__onClick.bind(this);

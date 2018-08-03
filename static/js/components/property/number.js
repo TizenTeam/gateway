@@ -12,7 +12,16 @@
 const BaseComponent = require('../base-component');
 
 class NumberProperty extends BaseComponent {
+  static init() {
+    if (!NumberProperty.count) {
+      NumberProperty.count = 1;
+    } else {
+      NumberProperty.count++;
+    }
+  }
+
   constructor() {
+    NumberProperty.init();
     const template = document.createElement('template');
     template.innerHTML = `
   <style>
@@ -74,23 +83,23 @@ class NumberProperty extends BaseComponent {
       display: inline-block;
     }
   </style>
-  <div id="container-${BaseComponent.count}" class="webthing-number-property-container">
-    <div id="contents-${BaseComponent.count}" class="webthing-number-property-contents">
-      <form id="form-${BaseComponent.count}" class="webthing-number-property-form">
-        <input type="number" id="input-${BaseComponent.count}"
+  <div id="container-${NumberProperty.count}" class="webthing-number-property-container">
+    <div id="contents-${NumberProperty.count}" class="webthing-number-property-contents">
+      <form id="form-${NumberProperty.count}" class="webthing-number-property-form">
+        <input type="number" id="input-${NumberProperty.count}"
           class="webthing-number-property-input hide-spinner">
       </form>
-      <div id="unit-${BaseComponent.count}" class="webthing-number-property-unit"></div>
+      <div id="unit-${NumberProperty.count}" class="webthing-number-property-unit"></div>
     </div>
   </div>
-  <div id="name-${BaseComponent.count}" class="webthing-number-property-name"></div>
+  <div id="name-${NumberProperty.count}" class="webthing-number-property-name"></div>
 `;
     super(template);
 
-    this._form = this.shadowRoot.querySelector(`#form${this.idSuffix}`);
-    this._input = this.shadowRoot.querySelector(`#input${this.idSuffix}`);
-    this._unit = this.shadowRoot.querySelector(`#unit${this.idSuffix}`);
-    this._name = this.shadowRoot.querySelector(`#name${this.idSuffix}`);
+    this._form = this.shadowRoot.querySelector(`#form-${NumberProperty.count}`);
+    this._input = this.shadowRoot.querySelector(`#input-${NumberProperty.count}`);
+    this._unit = this.shadowRoot.querySelector(`#unit-${NumberProperty.count}`);
+    this._name = this.shadowRoot.querySelector(`#name-${NumberProperty.count}`);
 
     this._onClick = this.__onClick.bind(this);
     this._onSubmit = this.__onSubmit.bind(this);
