@@ -9,7 +9,7 @@
 # WARNING: for production deployment please consider supported project:
 # WARNING: https://github.com/mozilla-iot/gateway-docker
 
-FROM debian:stable
+FROM ubuntu:latest
 MAINTAINER Philippe Coval (p.coval@samsung.com)
 
 ENV DEBIAN_FRONTEND noninteractive
@@ -40,6 +40,27 @@ WORKDIR /root/mozilla-iot/gateway/..
 RUN echo "#log: ${project}: Preparing sources" \
   && set -x \
   && bash -x ./gateway/install.sh \
+  && sync
+
+WORKDIR /root/mozilla-iot/gateway
+RUN echo "#log: ${project}: Preparing system for tests" \
+  && set -x \
+  && . /root/.bashrc \
+  && sudo apt-get install -y \
+  firefox \
+  openjdk-8-jre \
+  python-pip \
+  python3-pip \
+  && pip3 install git+https://github.com/mycroftai/adapt#egg=adapt-parser \
+  && npm install -g yarn \
+  && yarn \
+  && sync
+
+WORKDIR /root/mozilla-iot/gateway
+RUN echo "#log: ${project}: Testing sources" \
+  && set -x \
+  && . /root/.bashrc \
+  && npm test \
   && sync
 
 EXPOSE 8080
