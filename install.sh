@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-[ "$NVM_VERSION" != "" ] || NVM_VERSION="v0.33.8"
+[ "$NVM_VERSION" != "" ] || NVM_VERSION="v0.33.11"
 [ "$NODE_VERSION" != "" ] || NODE_VERSION="--lts=carbon"
 [ "$USER" != "" ] || USER="pi"
 [ "$HOME" != "" ] || HOME="/home/${USER}"
