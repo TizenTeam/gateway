@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 
 MOZIOT_HOME="${MOZIOT_HOME:=/home/pi/.mozilla-iot}"
 _dir=$(dirname "$(readlink -f "$0")")

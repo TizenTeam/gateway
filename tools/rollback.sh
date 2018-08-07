@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 
 # This script performs a rollback of a failed upgrade. It expects to be run in
 # the ~/mozilla-iot directory where it can see gateway, gateway_old, and

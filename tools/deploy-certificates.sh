@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 
 MOZIOT_HOME="${MOZIOT_HOME:=/home/pi/.mozilla-iot}"
 SSL_DIR="${MOZIOT_HOME}/ssl"

@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 
 # This is intended for use with 0.3.X gateway releases.
 
