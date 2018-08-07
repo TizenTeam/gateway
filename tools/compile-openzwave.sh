@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 if [ -f master.zip ]; then
   rm master.zip
 fi

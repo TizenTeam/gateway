@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 
 # Creates the gateway-<hash>,tar.gz and node_modules-<hash>.tar.gz archives
 # which are then uploaded to the GitHub release

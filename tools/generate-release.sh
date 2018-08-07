@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 
 # Generates release archives based on the current Gateway revision
 
