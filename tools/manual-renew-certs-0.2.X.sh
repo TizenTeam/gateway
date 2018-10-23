@@ -3,7 +3,8 @@
 # This is intended for use with 0.2.X gateway releases.
 
 script_dir=$(readlink -f $(dirname "$0"))
-moziot_dir="/home/pi/mozilla-iot"
+user_dir="/home/pi" # TODO
+moziot_dir="${user_dir}/mozilla-iot"
 moziot_email="certificate@mozilla-iot.org"
 pagekite_pidfile="/tmp/_pagekite.pid"
 temp_dir="$(mktemp -d)"
