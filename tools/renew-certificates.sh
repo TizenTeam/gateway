@@ -1,5 +1,6 @@
 #!/bin/bash
 
+#TODO: remove /home/pi
 MOZIOT_HOME="${MOZIOT_HOME:=/home/pi/.mozilla-iot}"
 _dir=$(dirname "$(readlink -f "$0")")
 
