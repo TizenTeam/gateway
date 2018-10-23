@@ -113,8 +113,9 @@ main() {
 
   ROOT_MOUNTPOINT=rpi-root
   BOOT_MOUNTPOINT=rpi-boot
-  MOZILLA_IOT_DIR=${ROOT_MOUNTPOINT}/home/pi/mozilla-iot
-  MOZILLA_IOT_PROFILE_DIR=${ROOT_MOUNTPOINT}/home/pi/.mozilla-iot
+  user_dir="/home/pi" # TODO
+  MOZILLA_IOT_DIR=${ROOT_MOUNTPOINT}/${user_dir}/mozilla-iot
+  MOZILLA_IOT_PROFILE_DIR=${ROOT_MOUNTPOINT}/${user_dir}/.mozilla-iot
   ADDONS_DIR=${MOZILLA_IOT_PROFILE_DIR}/addons
   ETC_DIR=${ROOT_MOUNTPOINT}/etc
   CMDLINE=${BOOT_MOUNTPOINT}/cmdline.txt
