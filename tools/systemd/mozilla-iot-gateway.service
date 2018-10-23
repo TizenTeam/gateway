@@ -9,6 +9,7 @@ StandardOutput=journal
 StandardError=journal
 User=pi
 WorkingDirectory=/home/pi/mozilla-iot/gateway
+#TODO: env file to remove /home/pi
 ExecStart=/home/pi/mozilla-iot/gateway/run-app.sh
 Restart=always
 RestartSec=10s
