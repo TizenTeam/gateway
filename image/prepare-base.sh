@@ -22,6 +22,8 @@
 # https://github.com/mozilla-iot/wiki/wiki/Creating-the-base-image-file-for-the-Raspberry-Pi
 # for complete instructions on creating a base image.
 
+#TODO
+user_dir="/home/pi"
 NVM_VERSION="v0.33.8"
 NODE_VERSION="--lts=carbon"
 
@@ -90,9 +92,9 @@ StandardError=journal
 # If you delete this line, it will run as root
 User=pi
 # Edit this line, if needed, to specify where you installed the server
-WorkingDirectory=/home/pi/mozilla-iot/gateway
+WorkingDirectory=${user_dir}/mozilla-iot/gateway
 # Edit this line, if needed, to set the correct path to node
-ExecStart=/home/pi/mozilla-iot/gateway/run-app.sh
+ExecStart=${user_dir}/mozilla-iot/gateway/run-app.sh
 Restart=always
 RestartSec=10s
 
@@ -111,9 +113,9 @@ StandardOutput=journal
 StandardError=journal
 User=pi
 # Edit this line, if needed, to specify where you installed the server
-WorkingDirectory=/home/pi/mozilla-iot/
+WorkingDirectory=${user_dir}/mozilla-iot/
 # Edit this line, if needed, to set the correct path to the script
-ExecStart=/home/pi/mozilla-iot/gateway/tools/rollback.sh
+ExecStart=${user_dir}/mozilla-iot/gateway/tools/rollback.sh
 
 END
 
@@ -128,9 +130,9 @@ StandardOutput=journal
 StandardError=journal
 User=pi
 # Edit this line, if needed, to specify where you installed the server
-WorkingDirectory=/home/pi/mozilla-iot/gateway
+WorkingDirectory=${user_dir}/mozilla-iot/gateway
 # Edit this line, if needed, to set the correct path to the script
-ExecStart=/home/pi/mozilla-iot/gateway/tools/check-for-update.sh
+ExecStart=${user_dir}/mozilla-iot/gateway/tools/check-for-update.sh
 
 END
 
@@ -166,9 +168,9 @@ StandardOutput=journal
 StandardError=journal
 User=root
 # Edit this line, if needed, to specify where you installed the server
-WorkingDirectory=/home/pi/mozilla-iot/gateway
+WorkingDirectory=${user_dir}/mozilla-iot/gateway
 # Edit this line, if needed, to set the correct path to the script
-ExecStart=/home/pi/mozilla-iot/gateway/tools/renew-certificates.sh
+ExecStart=${user_dir}/mozilla-iot/gateway/tools/renew-certificates.sh
 END
 
 sudo su -c 'cat > /etc/systemd/system/mozilla-iot-gateway.renew-certificates.timer' <<END
@@ -198,9 +200,9 @@ StandardOutput=journal
 StandardError=journal
 User=pi
 # Edit this line, if needed, to specify where you installed the server
-WorkingDirectory=/home/pi/mozilla-iot/intent-parser
+WorkingDirectory=${user_dir}/mozilla-iot/intent-parser
 # Edit this line, if needed, to set the correct path to node
-ExecStart=/home/pi/mozilla-iot/intent-parser/intent-parser-server.py
+ExecStart=${user_dir}/mozilla-iot/intent-parser/intent-parser-server.py
 Restart=always
 RestartSec=10s
 
