@@ -57,11 +57,12 @@ END
 copy_prep_files() {
   echo "Copying prepare-base scripts"
 
-  HOME_PI="${ROOT_MOUNTPOINT}/home/pi"
+  user="pi"
+  USER_HOME="${ROOT_MOUNTPOINT}/home/${user}"
 
-  sudo rm -f "${HOME_PI}"/prepare-base*.sh
-  sudo cp "${SCRIPT_DIR}"/prepare-base*.sh "${HOME_PI}"
-  sudo chmod +x "${HOME_PI}"/prepare-base*.sh
+  sudo rm -f "${HOME_USER}"/prepare-base*.sh
+  sudo cp "${SCRIPT_DIR}"/prepare-base*.sh "${HOME_USER}"
+  sudo chmod +x "${HOME_USER}"/prepare-base*.sh
 }
 
 ###########################################################################
