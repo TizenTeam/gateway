@@ -1,5 +1,6 @@
 #!/bin/bash
 
+#TODO: remove pi
 MOZIOT_HOME="${MOZIOT_HOME:=/home/pi/.mozilla-iot}"
 SSL_DIR="${MOZIOT_HOME}/ssl"
 
