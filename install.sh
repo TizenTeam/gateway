@@ -53,7 +53,9 @@ if [ ! -d "gateway" ]; then
     git clone https://github.com/moziot/gateway.git
 fi
 cd gateway
-npm install .
+npm install . # || echo 'ignored: sqlite may fail'
+npm install sqlite3 || yarn "https://github.com/Loghorn/node-sqlite3.git#upgrade-pre-gyp"
+yarn
 
 # Create a self-signed cert. This is temporary (for development).
 #if [ ! -f "certificate.pem" ]; then
