@@ -54,11 +54,15 @@ run/docker: docker-compose.yml Dockerfile
 clean:
 	rm -rf node_modules
 
-addons: ${HOME}/.mozilla-iot/addons
-	rm -rf $<
-	mkdir -p $<
-	cd $< && git clone https://github.com/mozilla-iot/thing-url-adapter
-	cd $</thing-url-adapter && npm install
+addons: ${HOME}/.mozilla-iot/addons/thing-url-adapter ${HOME}/.mozilla-iot/addons/virtual-things-adapter
+	ls $<
+
+${HOME}/.mozilla-iot/addons/%: ${HOME}/.mozilla-iot
+	rm -rf $@
+	mkdir -p ${@D}
+	git clone https://github.com/mozilla-iot/${@F} ${@}
+	cd $@ && npm install
+
 
 ${HOME}/.mozilla-iot.mine: ${HOME}/.mozilla-iot
 	ls $@ || { rm -rf $@ ; cp -rfa $^ $@; }
