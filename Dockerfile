@@ -43,7 +43,7 @@ RUN echo "#log: ${project}: Preparing sources" \
   && export NVM_VERSION="v0.33.8" \
   && export NODE_VERSION="11" \
   && export NVM_DIR="$HOME/.nvm" \
-  && bash -x -e ./gateway/install.sh || echo "ignore: May fail on sqlite: TODO"\
+  && bash -x -e ./gateway/install.sh \
   && sync
 
 ADD https://github.com/mozilla-iot/thing-url-adapter/archive/master.tar.gz /usr/local/src/thing-url-adapter.tar.gz
