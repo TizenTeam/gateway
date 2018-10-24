@@ -8,7 +8,6 @@ services:
   web:
     build: .
     command: /root/mozilla-iot/gateway/run-app.sh
-    volumes:
-      - /root/mozilla-iot/gateway
     ports:
       - "8080:8080"
+    network_mode: "host"
