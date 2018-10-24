@@ -39,6 +39,10 @@ ADD . /root/mozilla-iot/gateway
 WORKDIR /root/mozilla-iot/gateway/..
 RUN echo "#log: ${project}: Preparing sources" \
   && set -x \
+  && set -x \
+  && export NVM_VERSION="v0.33.8" \
+  && export NODE_VERSION="10" \
+  && export NVM_DIR="$HOME/.nvm" \
   && ./gateway/install.sh \
   && sync
 
@@ -55,6 +59,10 @@ RUN echo "#log: ${project}: Add addons sources" \
 WORKDIR /usr/local/src/
 RUN echo "#log: ${project}: Add addons sources" \
   && cd ${HOME}/.mozilla-iot/addons/thing-url-adapter \
+  && export NVM_VERSION="v0.33.8" \
+  && export NODE_VERSION="10" \
+  && export NVM_DIR="$HOME/.nvm" \
+  && . "/root/.nvm/nvm.sh" \
   && npm install -g yarn \
   && yarn install \
   && sync
