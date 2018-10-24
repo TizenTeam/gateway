@@ -4,8 +4,12 @@ Dockerfile
 
 #{ [[./.gitignore]]
 # Standard artifacts
+\**
+.#*
+*#
 *~
 *.swp
+*.tmp
 .DS_Store
 .nyc_output/
 .cache-loader/
